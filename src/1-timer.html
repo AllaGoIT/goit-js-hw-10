@@ -3,28 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/timer.css" />
     <title>Document</title>
   </head>
   <body>
-    <input type="text" id="datetime-picker" />
-    <button type="button" data-start>Start</button>
-
-    <div class="timer">
-      <div class="field">
-        <span class="value" data-days>00</span>
-        <span class="label">Days</span>
+    <div class="modal">
+      <div class="container-input">
+        <input type="text" class="input-field" id="datetime-picker" />
+        <button type="button" data-start>Start</button>
       </div>
-      <div class="field">
-        <span class="value" data-hours>00</span>
-        <span class="label">Hours</span>
-      </div>
-      <div class="field">
-        <span class="value" data-minutes>00</span>
-        <span class="label">Minutes</span>
-      </div>
-      <div class="field">
-        <span class="value" data-seconds>00</span>
-        <span class="label">Seconds</span>
+      <div class="timer">
+        <div class="field">
+          <div class="container-days">
+            <span class="value" data-days>00</span>
+            <span class="label">Days</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="container-hours">
+            <span class="value" data-hours>00</span>
+            <span class="label">Hours</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="container-minuties">
+            <span class="value" data-minutes>00</span>
+            <span class="label">Minutes</span>
+          </div>
+        </div>
+        <div class="field">
+          <div class="container-seconds">
+            <span class="value" data-seconds>00</span>
+            <span class="label">Seconds</span>
+          </div>
+        </div>
       </div>
     </div>
   </body>
