@@ -14,11 +14,11 @@ const clock = {
   minutes: document.querySelector("[data-minutes]"),
   seconds: document.querySelector("[data-seconds]"),
 
-  setTime(days, hours, minutes, seconds) {
-    this.days.textContent = `${days}`;
-    this.hours.textContent = `${hours}`;
-    this.minutes.textContent = `${minutes}`;
-    this.seconds.textContent = `${seconds}`;
+  setTime(t = { days, hours, minutes, seconds }) {
+    this.days.textContent = `${t.days}`;
+    this.hours.textContent = `${t.hours}`;
+    this.minutes.textContent = `${t.minutes}`;
+    this.seconds.textContent = `${t.seconds}`;
   }
 }
 
@@ -87,10 +87,8 @@ function timerStart() {
 
 function timerStep() {
   counter = userSelectedDate - Date.now();
-
-  const c = convertMs(counter);
-
-  clock.setTime(c.days, c.hours, c.minutes, c.seconds);
+  
+  clock.setTime(convertMs(counter));
 
   if (counter.valueOf() === 0) {
     timerStop();
