@@ -21,8 +21,6 @@ function onInput(event) {
   }
 }
 
-  //let selectCheck;
-
 function onChange(event) {
   if (formEl.elements.state.value === "fulfilled") {
     formData.state = true;
@@ -30,8 +28,6 @@ function onChange(event) {
   else if (formEl.elements.state.value === "rejected") {
     formData.state = false;
   }
-  
-  //console.log(`state: ${formData.state}`);
 }
 
 function onSubmit(event) {
@@ -59,6 +55,7 @@ function startPromise() {
       message: `✅  Fulfilled promise in ${formData.delay}ms`,
       backgroundColor: 'green',
       messageColor: 'white',
+      close: false,
     })
   })
   .catch(error => {
@@ -67,6 +64,7 @@ function startPromise() {
       message: `❌  Rejected promise in ${formData.delay}ms`,
       backgroundColor: 'red',
       messageColor: 'white',
+      close: false,
     });
   });
 }

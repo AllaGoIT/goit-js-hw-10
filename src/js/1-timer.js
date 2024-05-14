@@ -78,18 +78,11 @@ const options = {
         message: 'Please choose a date in the future',
         backgroundColor: 'red',
         messageColor: 'white',
-        icon:"",
-        iconText: "./src/img/highlight_off_24dp.png",
-        close: "false",
+        //icon:"/src/img/highlight_off_24dp.png",
+        //iconColor: "grey",
+        close: false,
+});
 
-        
-        
-    
-      });
-//       iziToast.info({
-//     title: 'Hello',
-//     message: 'Welcome!',
-// });
       deactivateEl();
     }
     else {
