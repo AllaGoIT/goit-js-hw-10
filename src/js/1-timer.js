@@ -3,6 +3,11 @@ import flatpickr from "flatpickr";
 
 import "flatpickr/dist/flatpickr.min.css";
 
+import iziToast from "izitoast";
+
+import "izitoast/dist/css/iziToast.min.css";
+
+
 let userSelectedDate;
 
 const btnEl = document.querySelector("button");
@@ -22,6 +27,10 @@ const clock = {
   }
 }
 
+function addLeadingZero(value) {
+  return String(value).padStart(2, '0');
+}
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -30,13 +39,13 @@ function convertMs(ms) {
   const day = hour * 24;
 
   // Remaining days
-  const days = Math.floor(ms / day);
+  const days = addLeadingZero(Math.floor(ms / day));
   // Remaining hours
-  const hours = Math.floor((ms % day) / hour);
+  const hours = addLeadingZero(Math.floor((ms % day) / hour));
   // Remaining minutes
-  const minutes = Math.floor(((ms % day) % hour) / minute);
+  const minutes = addLeadingZero(Math.floor(((ms % day) % hour) / minute));
   // Remaining seconds
-  const seconds = Math.floor((((ms % day) % hour) % minute) / second);
+  const seconds = addLeadingZero(Math.floor((((ms % day) % hour) % minute) / second));
 
   return { days, hours, minutes, seconds };
 }
@@ -63,7 +72,24 @@ const options = {
   onClose(selectedDates) {
     console.log(selectedDates[0]);
     if (selectedDates[0].valueOf() < Date.now().valueOf()) {
-      alert(`Please choose a date in the future`);
+      //alert(`Please choose a date in the future`);
+      iziToast.show({
+        position: 'topCenter',
+        message: 'Please choose a date in the future',
+        backgroundColor: 'red',
+        messageColor: 'white',
+        icon:"",
+        iconText: "./src/img/highlight_off_24dp.png",
+        close: "false",
+
+        
+        
+    
+      });
+//       iziToast.info({
+//     title: 'Hello',
+//     message: 'Welcome!',
+// });
       deactivateEl();
     }
     else {
@@ -80,12 +106,16 @@ let counter;
 
 btnEl.addEventListener("click", timerStart);
 
+
+
 function timerStart() {
   deactivateEl();
   intervalId = setInterval(timerStep, 1000);
+  
 }
 
 function timerStep() {
+
   counter = userSelectedDate - Date.now();
   
   clock.setTime(convertMs(counter));
