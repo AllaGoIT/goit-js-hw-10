@@ -61,6 +61,7 @@ function deactivateEl() {
 
 function activateEl() {
   btnEl.disabled = false;
+  inputEl.disabled = false;
   btnEl.style.backgroundColor = "rgba(78, 117, 255, 1)";
   inputEl.style.borderColor = "rgba(0, 0, 0, 1)";
 }
@@ -79,10 +80,8 @@ const options = {
         message: ' ❌ Please choose a date in the future',
         backgroundColor: 'red',
         messageColor: 'white',
-        //icon:"/src/img/highlight_off_24dp.png",
-        //iconColor: "grey",
         close: false,
-});
+      });
 
       deactivateEl();
     }
@@ -100,31 +99,25 @@ let counter;
 
 btnEl.addEventListener("click", timerStart);
 
-
-
 function timerStart() {
   deactivateEl();
+  // userSelectedDate = Date.now() + 5000;
   intervalId = setInterval(timerStep, 1000);
-  
 }
 
 function timerStep() {
-
   counter = userSelectedDate - Date.now();
-  
   clock.setTime(convertMs(counter));
 
-  if (counter.valueOf() === 0) {
+  if (counter.valueOf() < 0) {
     timerStop();
-    return;
   }
 }
 
 function timerStop() {
   clearInterval(intervalId);
-  clock.setTime(convertMs(counter));
   counter = 0;
+  clock.setTime(convertMs(counter));
   addLeadingZero();
   activateEl();
-  
 }
