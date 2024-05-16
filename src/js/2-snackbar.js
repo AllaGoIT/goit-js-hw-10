@@ -56,7 +56,7 @@ function startPromise() {
       backgroundColor: 'green',
       messageColor: 'white',
       close: false,
-    })
+    });
   })
   .catch(error => {
     iziToast.show({

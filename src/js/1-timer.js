@@ -54,6 +54,7 @@ let intervalId;
 
 function deactivateEl() {
   btnEl.disabled = true;
+  inputEl.disabled = true;
   btnEl.style.backgroundColor = "rgba(152, 152, 152, 1)";
   inputEl.style.borderColor = "rgba(128, 128, 128, 1)";
 }
@@ -75,7 +76,7 @@ const options = {
       //alert(`Please choose a date in the future`);
       iziToast.show({
         position: 'topCenter',
-        message: 'Please choose a date in the future',
+        message: ' ❌ Please choose a date in the future',
         backgroundColor: 'red',
         messageColor: 'white',
         //icon:"/src/img/highlight_off_24dp.png",
@@ -115,11 +116,15 @@ function timerStep() {
 
   if (counter.valueOf() === 0) {
     timerStop();
+    return;
   }
 }
 
 function timerStop() {
   clearInterval(intervalId);
+  clock.setTime(convertMs(counter));
+  counter = 0;
+  addLeadingZero();
   activateEl();
   
 }
