@@ -37,22 +37,23 @@ function onSubmit(event) {
 
 function startPromise() {
   const promise = new Promise((resolve, reject) => {
+    const a = formData.state;
+    const b = formData.delay;
 
     setTimeout(() => {
-      if (formData.state) {
-        resolve(`${formData.delay}ms`);
+      if (a) {
+        resolve(b);
       }
       else {
-        reject(`${formData.delay}ms`);
+        reject(b);
       }
     }, formData.delay);
-    
   });
 
   promise.then(value => {
     iziToast.show({
       position: 'topCenter',
-      message: `✅  Fulfilled promise in ${formData.delay}ms`,
+      message: `✅  Fulfilled promise in ${value}ms`,
       backgroundColor: 'green',
       messageColor: 'white',
       close: false,
@@ -61,7 +62,7 @@ function startPromise() {
   .catch(error => {
     iziToast.show({
       position: 'topCenter',
-      message: `❌  Rejected promise in ${formData.delay}ms`,
+      message: `❌  Rejected promise in ${error}ms`,
       backgroundColor: 'red',
       messageColor: 'white',
       close: false,
